@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-Sitemap: https://wiseai.dev/sitemap.xml
+Sitemap: https://wiseai.dev/static/sitemap.xml
