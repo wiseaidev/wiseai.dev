@@ -14,7 +14,7 @@ pub struct ProfileCardProps {
     pub image_src: AttrValue,
 }
 
-const WRAPPER_CLASS: &str = "w-full min-h-screen flex items-center justify-center pt-5";
+const WRAPPER_CLASS: &str = "w-full min-h-screen flex items-center justify-center pt-16";
 const HERO_CARD_CLASS: &str =
     "w-full max-w-2xl bg-black border-2 border-blue-500 shadow-md rounded-lg mx-5";
 const HERO_CARD_IMG_CLASS: &str =
@@ -42,7 +42,8 @@ const ICON_LINKEDIN: &str = "fa-brands fa-linkedin";
 
 #[function_component(Hero)]
 pub fn hero(props: &ProfileCardProps) -> Html {
-    html! { <div class={WRAPPER_CLASS}>{ profile_content(props) }</div> }
+    html! { 
+        <section id="hero"><div class={WRAPPER_CLASS}>{ profile_content(props) }</div></section> }
 }
 
 fn profile_content(props: &ProfileCardProps) -> Html {
