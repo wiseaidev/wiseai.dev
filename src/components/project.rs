@@ -4,11 +4,12 @@ const BG_BLACK_CLASS: &str = "bg-black shadow-dark rounded w-full xs:w-1/2";
 const PROJECT_IMAGE_CLASS: &str =
     "project-image w-auto h-64 object-cover rounded-t w-full xs:w-1/2";
 const PROJECT_ITEM_CLASS: &str =
-    "project-item relative rounded shadow-dark border-2 border-blue-500 shadow-md overflow-hidden w-full";
-const DETAILS_CLASS: &str = "absolute bottom-0 left-0 w-full h-full p-4 bg-black opacity-0 hover:opacity-90 transition-opacity duration-300";
-const TERM_CLASS: &str = "term text-capitalize text-white";
-const TITLE_CLASS: &str = "title text-white";
-const MORE_BUTTON_CLASS: &str = "more-button";
+    "project-item relative rounded shadow-dark border-2 border-blue-500 shadow-md overflow-hidden w-full text-center";
+const DETAILS_CLASS: &str = "absolute bottom-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-90 transition-opacity duration-300";
+const TERM_CLASS: &str =
+    "term text-blue-900 bg-white rounded-bl-lg rounded-br-lg text-sm px-4 py-2";
+const TITLE_CLASS: &str = "title text-white text-xl pt-10";
+const MORE_BUTTON_CLASS: &str = "more-button text-white text-2xl";
 const FAB_CLASS: &str = "fab fa-github text-primary";
 
 #[derive(Properties, Clone, PartialEq)]
