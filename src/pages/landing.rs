@@ -4,6 +4,7 @@ use crate::components::hero::ProfileCardProps;
 use crate::components::experience::Experience;
 use crate::components::projects::Projects;
 use crate::components::certifications::Certifications;
+use crate::components::footer::Footer;
 use yew::prelude::*;
 
 #[function_component(LandingPage)]
@@ -23,6 +24,7 @@ pub fn landing_page() -> Html {
         <Experience />
         <Projects />
         <Certifications />
+        <Footer />
       </>
       }
 }
