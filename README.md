@@ -29,7 +29,7 @@
 
 Navigate to http://localhost:3000 to explore the landing page.
 
-## 🚀 Deploy to a CloudFlare
+## 🚀 Deploying to CloudFlare
 
 1. Install [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/get-started/):
 
