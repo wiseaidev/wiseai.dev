@@ -18,10 +18,10 @@ const WRAPPER_CLASS: &str = "w-full min-h-screen flex items-center justify-cente
 const HERO_CARD_CLASS: &str =
     "w-full max-w-2xl bg-black border-2 border-blue-500 shadow-md rounded-lg mx-5";
 const HERO_CARD_IMG_CLASS: &str =
-    "w-40 h-40 mx-auto rounded-full border-blue-500 relative shadow-2xl mt-[-90] border-2";
+    "w-40 h-40 mx-auto rounded-full border-blue-500 relative shadow-2xl absolute -top-20 border-2";
 const HERO_CARD_IMG_IMG_CLASS: &str =
     "block w-full h-full object-cover object-center rounded-full z-10";
-const HERO_CARD_CNT_CLASS: &str = "mt-6 text-center px-5 pb-10 transition-all duration-300";
+const HERO_CARD_CNT_CLASS: &str = "text-center px-5 pb-10 transition-all duration-300";
 const HERO_CARD_NAME_CLASS: &str = "font-bold text-3xl text-white mb-4";
 const HERO_CARD_CHECK_CIRCLE_CLASS: &str = "fa-check-circle text-blue-400 ml-2";
 const HERO_CARD_TXT_CLASS: &str = "text-lg font-medium text-gray-500 mb-4";
