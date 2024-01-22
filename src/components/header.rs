@@ -27,28 +27,28 @@ pub fn header_component() -> Html {
     let menus: Vec<Menu> = vec![
         Menu {
             id: 1,
+            link: "#blog",
+            name: "Blog",
+        },
+        Menu {
+            id: 2,
             link: "#skills",
             name: "Skills",
         },
         Menu {
-            id: 2,
+            id: 3,
             link: "#experience",
             name: "Experience",
         },
         Menu {
-            id: 3,
+            id: 4,
             link: "#projects",
             name: "Projects",
         },
         Menu {
-            id: 4,
+            id: 5,
             link: "#certifications",
             name: "Certifications",
-        },
-        Menu {
-            id: 5,
-            link: "#blog",
-            name: "Blog",
         }
     ];
 
