@@ -5,6 +5,7 @@ use crate::components::experience::Experience;
 use crate::components::projects::Projects;
 use crate::components::certifications::Certifications;
 use crate::components::footer::Footer;
+use crate::components::skills::Skills;
 use yew::prelude::*;
 
 #[function_component(LandingPage)]
@@ -21,6 +22,7 @@ pub fn landing_page() -> Html {
       <>
         <Header />
         <Hero ..profile_props />
+        <Skills />
         <Experience />
         <Projects />
         <Certifications />

@@ -5,3 +5,4 @@ pub mod projects;
 pub mod project;
 pub mod certifications;
 pub mod footer;
+pub mod skills;
