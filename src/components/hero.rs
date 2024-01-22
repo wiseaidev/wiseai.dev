@@ -42,8 +42,9 @@ const ICON_LINKEDIN: &str = "fa-brands fa-linkedin";
 
 #[function_component(Hero)]
 pub fn hero(props: &ProfileCardProps) -> Html {
-    html! { 
-        <section id="hero"><div class={WRAPPER_CLASS}>{ profile_content(props) }</div></section> }
+    html! {
+        <section id="hero"><div class={WRAPPER_CLASS}>{ profile_content(props) }</div></section>
+    }
 }
 
 fn profile_content(props: &ProfileCardProps) -> Html {
@@ -97,16 +98,16 @@ fn profile_location(location: &str) -> Html {
 fn profile_social_links() -> Html {
     html! {
         <div class={HERO_CARD_SOCIAL_CLASS}>
-            { social_link("https://www.twitter.com/wiseaidev".to_string().into(), ICON_TWITTER) }
-            { social_link("https://www.github.com/wiseaidev".to_string().into(), ICON_GITHUB) }
-            { social_link("https://wiseai.medium.com".to_string().into(), ICON_MEDIUM) }
-            { social_link("https://dev.to/wiseai".to_string().into(), ICON_DEV) }
-            { social_link("https://www.linkedin.com/in/mahmoud-harmouch".to_string().into(), ICON_LINKEDIN) }
+            { social_link("https://www.twitter.com/wiseaidev", ICON_TWITTER) }
+            { social_link("https://www.github.com/wiseaidev", ICON_GITHUB) }
+            { social_link("https://wiseai.medium.com", ICON_MEDIUM) }
+            { social_link("https://dev.to/wiseai", ICON_DEV) }
+            { social_link("https://www.linkedin.com/in/mahmoud-harmouch", ICON_LINKEDIN) }
         </div>
     }
 }
 
-fn social_link(url: AttrValue, icon: &str) -> Html {
+fn social_link(url: &'static str, icon: &str) -> Html {
     html! {
         <a
             class={HERO_CARD_SOCIAL_ITEM_CLASS}

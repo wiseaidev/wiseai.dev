@@ -17,13 +17,13 @@ pub struct ProjectData {
     #[prop_or_default]
     pub id: u32,
     #[prop_or_default]
-    pub title: AttrValue,
+    pub title: &'static str,
     #[prop_or_default]
-    pub category: AttrValue,
+    pub category: &'static str,
     #[prop_or_default]
-    pub image: AttrValue,
+    pub image: &'static str,
     #[prop_or_default]
-    pub link: AttrValue,
+    pub link: &'static str,
 }
 
 #[function_component(Project)]
@@ -31,7 +31,7 @@ pub fn project(props: &ProjectData) -> Html {
     let toggler = use_state(|| false);
 
     let handle_lightbox = {
-        let link = props.link.clone();
+        let link = props.link;
         Callback::from(move |_| {
             if link.is_empty() {
                 toggler.set(!false);
@@ -41,7 +41,7 @@ pub fn project(props: &ProjectData) -> Html {
     html! {
         <div class={BG_BLACK_CLASS}>
             <a
-                href={props.link.clone()}
+                href={props.link}
                 class={PROJECT_IMAGE_CLASS}
                 as="project"
                 onclick={handle_lightbox}
@@ -52,7 +52,7 @@ pub fn project(props: &ProjectData) -> Html {
                     <div class="relative">
                         <img
                             class={PROJECT_IMAGE_CLASS}
-                            src={&props.image}
+                            src={&*props.image}
                             alt="Project-title"
                             loading="lazy"
                             style="height: 220px;"

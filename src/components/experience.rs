@@ -16,11 +16,11 @@ const SPACER_CLASS: &str = "spacer";
 
 pub struct TimelineData {
     pub id: u32,
-    pub title: String,
-    pub years: String,
-    pub content: String,
-    pub color: String,
-    pub content_color: String,
+    pub title: &'static str,
+    pub years: &'static str,
+    pub content: &'static str,
+    pub color: &'static str,
+    pub content_color: &'static str,
 }
 
 #[function_component(Experience)]
@@ -28,42 +28,39 @@ pub fn experience() -> Html {
     let education_data = vec![
         TimelineData {
             id: 1,
-            title: "Coursera Certifications".to_string(),
-            years: "2020 - Present".to_string(),
-            content: "Over 100 Certifications Earned From the Coursera Platform.".to_string(),
-            color: "#000000".to_string(),
-            content_color: "light".to_string(),
+            title: "Coursera Certifications",
+            years: "2020 - Present",
+            content: "Over 100 Certifications Earned From the Coursera Platform.",
+            color: "#000000",
+            content_color: "light",
         },
         TimelineData {
             id: 2,
-            title: "Diploma's Degree".to_string(),
-            years: "2015 - 2020".to_string(),
+            title: "Diploma's Degree",
+            years: "2015 - 2020",
             content:
-                "A Diploma in Electrical and Telecommunication Engineering(~ Masters's Degree)."
-                    .to_string(),
-            color: "#000000".to_string(),
-            content_color: "light".to_string(),
+                "A Diploma in Electrical and Telecommunication Engineering(~ Masters's Degree).",
+            color: "#000000",
+            content_color: "light",
         },
     ];
 
     let experience_data = vec![
         TimelineData {
             id: 1,
-            title: "Self Employed".to_string(),
-            years: "2020 - Present".to_string(),
-            content: "Delivered full stack projects to multiple clients on time, and on budget."
-                .to_string(),
-            color: "#000000".to_string(),
-            content_color: "light".to_string(),
+            title: "Self Employed",
+            years: "2020 - Present",
+            content: "Delivered full stack projects to multiple clients on time, and on budget.",
+            color: "#000000",
+            content_color: "light",
         },
         TimelineData {
             id: 2,
-            title: "Final Year Project".to_string(),
-            years: "Mar. 2020 - Sep. 2020".to_string(),
-            content: "Thesis about Computer Vision Automated Control System Based On Zenoh'."
-                .to_string(),
-            color: "#000000".to_string(),
-            content_color: "light".to_string(),
+            title: "Final Year Project",
+            years: "Mar. 2020 - Sep. 2020",
+            content: "Thesis about Computer Vision Automated Control System Based On Zenoh'.",
+            color: "#000000",
+            content_color: "light",
         },
     ];
 
