@@ -7,6 +7,7 @@ use crate::components::certifications::Certifications;
 use crate::components::trending::Trending;
 use crate::components::footer::Footer;
 use crate::components::skills::Skills;
+use yew_scroll::ScrollToTop;
 use yew::prelude::*;
 
 #[function_component(LandingPage)]
@@ -29,6 +30,7 @@ pub fn landing_page() -> Html {
         <Projects />
         <Certifications />
         <Footer />
+        <ScrollToTop />
       </>
       }
 }
