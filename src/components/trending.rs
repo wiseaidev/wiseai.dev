@@ -1,5 +1,7 @@
-use yew::prelude::*;
 use crate::components::projects::pagetitle;
+use web_sys::HtmlInputElement;
+use yew::prelude::*;
+use yew_i18n::YewI18n;
 
 const TRENDING_CONTAINER: &str = "flex items-center justify-center min-h-screen";
 const SECTION_CONTAINER: &str = "trending-container max-w-screen-lg mx-auto p-4";
@@ -14,19 +16,30 @@ const AVATAR_IMAGE: &str = "w-8 h-8 rounded-full mr-2 object-cover";
 const BUTTON_CLASS: &str =
     "rounded-full py-2 px-6 bg-blue-500 text-white text-lg transition-colors hover:bg-blue-600";
 const FLEX_CENTER_CLASS: &str = "flex justify-center mt-4";
+const SELECT_CLASS: &str =
+    "border border-blue-500 rounded p-2 m-2 mb-14 bg-gray-800 text-white cursor-pointer w-45 h-10";
+const OPTION_CLASS: &str = "text-lg";
 
 #[function_component(Trending)]
 pub fn trending_component() -> Html {
+    let mut i18n = use_context::<YewI18n>().expect("No I18n context provided");
+
+    let selected_language_ref = use_node_ref();
+    let selected_language_handle = use_state(|| "en".to_string());
+    let selected_language = (*selected_language_handle).clone();
+
+    let _ = i18n.set_translation_language(&selected_language);
+
     let posts = vec![
         Post {
             id: 1,
-            title: "Rust: The Next Big Thing in Data Science",
+            title: Box::leak(i18n.t("Rust: The Next Big Thing in Data Science").into_boxed_str()),
             url: "https://towardsdatascience.com/rust-the-next-big-thing-in-data-science-319a03305883",
-            date: "24 Apr, 2023",
+            date: Box::leak(i18n.t("24 Apr, 2023").into_boxed_str()),
             thumb: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*2jSP2n1KukVJYKVg2u4RuA.png",
             tags: vec![
                 Tag {
-                    name: "Data Science",
+                    name: Box::leak(i18n.t("Data Science").into_boxed_str()),
                     url: "https://wiseai.dev/blog/tags/data-science",
                 },
             ],
@@ -37,13 +50,13 @@ pub fn trending_component() -> Html {
         },
         Post {
             id: 2,
-            title: "The Ultimate Ndarray Handbook: Mastering the Art of Scientific Computing with Rust",
+            title: Box::leak(i18n.t("The Ultimate Ndarray Handbook: Mastering the Art of Scientific Computing with Rust").into_boxed_str()),
             url: "https://towardsdatascience.com/the-ultimate-ndarray-handbook-mastering-the-art-of-scientific-computing-with-rust-ef5ab767212a",
-            date: "02 May, 2023",
+            date: Box::leak(i18n.t("02 May, 2023").into_boxed_str()),
             thumb: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*bgmO2hUgZXpCHPC1XaBy3w.png",
             tags: vec![
                 Tag {
-                    name: "Data Science",
+                    name: Box::leak(i18n.t("Data Science").into_boxed_str()),
                     url: "https://wiseai.dev/blog/tags/data-science",
                 },
             ],
@@ -54,13 +67,13 @@ pub fn trending_component() -> Html {
         },
         Post {
             id: 3,
-            title: "Rust Polars: Unlocking High-Performance Data Analysis — Part 1",
+            title: Box::leak(i18n.t("Rust Polars: Unlocking High-Performance Data Analysis — Part 1").into_boxed_str()),
             url: "https://towardsdatascience.com/rust-polars-unlocking-high-performance-data-analysis-part-1-ce42af370ece",
-            date: "11 May, 2023",
+            date: Box::leak(i18n.t("11 May, 2023").into_boxed_str()),
             thumb: "https://miro.medium.com/v2/resize:fit:720/0*Le8YYCDuEhc4A7tN",
             tags: vec![
                 Tag {
-                    name: "Data Science",
+                    name: Box::leak(i18n.t("Data Science").into_boxed_str()),
                     url: "https://wiseai.dev/blog/tags/data-science",
                 },
             ],
@@ -71,17 +84,40 @@ pub fn trending_component() -> Html {
         },
     ];
 
+    let on_select_change = {
+        let selected_language_ref = selected_language_ref.clone();
+        let selected_language_handle = selected_language_handle.clone();
+        Callback::from(move |_| {
+            if let Some(input) = selected_language_ref.cast::<HtmlInputElement>() {
+                let value = input.value();
+                selected_language_handle.set(value);
+            }
+        })
+    };
+
     html! {
         <div class={TRENDING_CONTAINER}>
             <section class={SECTION_CONTAINER} id="blog">
-                { pagetitle("Trending Posts") }
+                { pagetitle(&i18n.t("Trending Posts")) }
+                <select
+                    ref={selected_language_ref}
+                    onchange={on_select_change}
+                    class={SELECT_CLASS}
+                >
+                    <option value="en" selected=true hidden=true>{ "Select Language" }</option>
+                    { for i18n.config.supported_languages.iter().map(|&lang| render_language_option(lang)) }
+                </select>
                 <div class={GRID_CONTAINER}>
                     { for posts.iter().map(|post| html! { <PostCard ..post.clone() /> }) }
                 </div>
                 <div class={FLEX_CENTER_CLASS}>
-                    <a class={BUTTON_CLASS} href="/blog" title="Go To Blog" target="_blank" rel="noreferrer">
-                        { "Go To Blog" }
-                    </a>
+                    <a
+                        class={BUTTON_CLASS}
+                        href="/blog"
+                        title="Go To Blog"
+                        target="_blank"
+                        rel="noreferrer"
+                    >{ "Go To Blog" }</a>
                 </div>
             </section>
         </div>
@@ -101,7 +137,7 @@ pub fn post_card(post: &Post) -> Html {
                 <div class={DATE_TEXT}>{ &post.date }</div>
                 <h2 class={TITLE_TEXT}>
                     <a href={post.url} title={post.title} target="_blank" rel="noreferrer">
-                        { &post.title }
+                        { post.title }
                     </a>
                 </h2>
                 <div class="flex space-x-2">
@@ -115,6 +151,20 @@ pub fn post_card(post: &Post) -> Html {
                 </div>
             </div>
         </div>
+    }
+}
+
+fn render_language_option(lang: &'static str) -> Html {
+    let flag_emoji = match lang {
+        "en" => "🇺🇸",
+        "fr" => "🇫🇷",
+        "de" => "🇩🇪",
+        "es" => "🇪🇸",
+        _ => "🌐",
+    };
+
+    html! {
+        <option class={OPTION_CLASS} value={lang}>{ format!("{} {}", flag_emoji, lang) }</option>
     }
 }
 

@@ -7,5 +7,8 @@ edition = "2021"
 
 [dependencies]
 yew = { version = "0.21.0", features = ["csr"] }
+serde_json = "1.0.111"
 yew-router = "0.18.0"
 yew-scroll = "0.1.0"
+web-sys = "0.3.67"
+yew-i18n = "0.1.0"

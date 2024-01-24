@@ -1,7 +1,7 @@
 mod app;
 mod components;
-mod router;
 mod pages;
+mod router;
 
 fn main() {
     yew::Renderer::<app::App>::new().render();

@@ -49,7 +49,7 @@ pub fn header_component() -> Html {
             id: 5,
             link: "#certifications",
             name: "Certifications",
-        }
+        },
     ];
 
     html! {
