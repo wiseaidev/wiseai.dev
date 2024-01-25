@@ -1,7 +1,6 @@
 use crate::components::certifications::Certifications;
 use crate::components::experience::Experience;
 use crate::components::footer::Footer;
-use crate::components::header::Header;
 use crate::components::hero::Hero;
 use crate::components::hero::ProfileCardProps;
 use crate::components::projects::Projects;
@@ -10,6 +9,7 @@ use crate::components::trending::Trending;
 use std::collections::HashMap;
 use yew::prelude::*;
 use yew_i18n::I18nProvider;
+use yew_navbar::{Menu, Navbar};
 use yew_scroll::ScrollToTop;
 
 #[function_component(LandingPage)]
@@ -80,17 +80,45 @@ pub fn landing_page() -> Html {
         }),
     );
 
+    let menus: Vec<Menu> = vec![
+        Menu {
+            id: 1,
+            link: "#blog",
+            name: "Blog",
+        },
+        Menu {
+            id: 2,
+            link: "#skills",
+            name: "Skills",
+        },
+        Menu {
+            id: 3,
+            link: "#experience",
+            name: "Experience",
+        },
+        Menu {
+            id: 4,
+            link: "#projects",
+            name: "Projects",
+        },
+        Menu {
+            id: 5,
+            link: "#certifications",
+            name: "Certifications",
+        },
+    ];
+
     html! {
-    <I18nProvider supported_languages={vec!["en", "fr", "de", "es"]} translations={translations} >
-      <Header />
-      <Hero ..profile_props />
-      <Trending />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Certifications />
-      <Footer />
-      <ScrollToTop />
-    </I18nProvider>
+        <I18nProvider supported_languages={vec!["en", "fr", "de", "es"]} translations={translations} >
+          <Navbar menus={menus} button_text="HireMe" button_href="mailto:business@wiseai.dev" />
+          <Hero ..profile_props />
+          <Trending />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Certifications />
+          <Footer />
+          <ScrollToTop />
+        </I18nProvider>
     }
 }
