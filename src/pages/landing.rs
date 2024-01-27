@@ -7,9 +7,9 @@ use crate::components::projects::Projects;
 use crate::components::skills::Skills;
 use crate::components::trending::Trending;
 use std::collections::HashMap;
-use yew::prelude::*;
-use yew_i18n::I18nProvider;
-use yew_navbar::{Menu, Navbar};
+use next_rs::prelude::*;
+use next_rs::I18nProvider;
+use next_rs::{Menu, Navbar};
 use yew_scroll::ScrollToTop;
 
 #[function_component(LandingPage)]

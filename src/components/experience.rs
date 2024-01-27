@@ -1,4 +1,4 @@
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 const SECTION_CLASS: &str = "min-h-screen pt-24 pb-16";
 const CONTAINER_CLASS: &str = "container mx-auto";

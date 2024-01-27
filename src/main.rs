@@ -4,5 +4,5 @@ mod pages;
 mod router;
 
 fn main() {
-    yew::Renderer::<app::App>::new().render();
+    next_rs::Renderer::<app::App>::new().render();
 }

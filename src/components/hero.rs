@@ -1,4 +1,4 @@
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct ProfileCardProps {

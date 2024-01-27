@@ -1,5 +1,5 @@
 use crate::components::projects::pagetitle;
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct CertificationData {

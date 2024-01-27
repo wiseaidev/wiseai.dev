@@ -1,4 +1,4 @@
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 const CONTAINER_CLASS: &str = "container mx-auto px-4";
 const FOOTER_CLASS: &str = "footer py-10";

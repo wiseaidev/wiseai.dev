@@ -1,5 +1,5 @@
 use crate::components::projects::pagetitle;
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 const SECTION_CLASS: &str = "min-h-screen pt-24 p-11 container mx-auto";
 const GRID_CLASS: &str =

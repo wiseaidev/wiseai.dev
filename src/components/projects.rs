@@ -1,5 +1,5 @@
 use crate::components::project::{Project, ProjectData};
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 const SECTION_CLASS: &str = "min-h-screen p-6";
 const CONTAINER_CLASS: &str = "container mx-auto";
