@@ -1,7 +1,7 @@
 use crate::components::projects::pagetitle;
 use web_sys::HtmlInputElement;
-use yew::prelude::*;
-use yew_i18n::YewI18n;
+use next_rs::prelude::*;
+use next_rs::YewI18n;
 
 const TRENDING_CONTAINER: &str = "flex items-center justify-center min-h-screen";
 const SECTION_CONTAINER: &str = "trending-container max-w-screen-lg mx-auto p-4";

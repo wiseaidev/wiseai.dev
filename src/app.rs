@@ -1,5 +1,5 @@
-use yew::prelude::*;
-use yew_router::prelude::*;
+use next_rs::prelude::*;
+use next_rs::router::*;
 
 use crate::router::{switch, Route};
 

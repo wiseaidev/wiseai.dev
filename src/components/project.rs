@@ -1,4 +1,4 @@
-use yew::prelude::*;
+use next_rs::prelude::*;
 
 const BG_BLACK_CLASS: &str = "bg-black shadow-dark rounded w-full xs:w-1/2";
 const PROJECT_IMAGE_CLASS: &str =
