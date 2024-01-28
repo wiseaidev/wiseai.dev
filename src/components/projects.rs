@@ -8,8 +8,8 @@ const PROJECT_WRAPPER_CLASS: &str =
 const SECTION_TITLE_CLASS: &str = "section-title lt-sp04 text-center text-white text-4xl font-bold";
 const SPACER_CLASS: &str = "spacer";
 
-#[function_component(Projects)]
-pub fn projects() -> Html {
+#[func]
+pub fn Projects() -> Html {
     let get_all_items = projects_data();
     html! {
         <section id="projects" class={SECTION_CLASS}>

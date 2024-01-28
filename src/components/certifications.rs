@@ -1,5 +1,6 @@
 use crate::components::projects::pagetitle;
 use next_rs::prelude::*;
+use next_rs::{Image, ImageProps, Link};
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct CertificationData {
@@ -23,7 +24,7 @@ const FLEX_CENTER_CLASS: &str = "flex justify-center mt-4";
 const BUTTON_CLASS: &str =
     "rounded-full py-2 px-6 bg-blue-500 text-white text-lg transition-colors hover:bg-blue-600";
 const GRID_ITEM_WRAPPER_CLASS: &str = "bg-black shadow-dark rounded group w-2/3 ml-16";
-const CERTIFICATION_IMAGE_CLASS: &str = "certification-image";
+const CERTIFICATION_IMAGE_CLASS: &str = "justify-center certification-image";
 const CERTIFICATION_ITEM_CLASS: &str =
     "certification-item rounded shadow-dark border border-primary relative overflow-hidden";
 const DETAILS_CLASS: &str = "details absolute top-0 left-0 opacity-0 group-hover:opacity-90 bg-black transition-all duration-500 w-full h-full";
@@ -33,8 +34,8 @@ const TITLE_CLASS: &str = "title text-white text-xl pt-10";
 const MORE_BUTTON_CLASS: &str = "more-button text-white text-2xl";
 const MASK_CLASS: &str = "mask";
 
-#[function_component(Certifications)]
-pub fn certifications() -> Html {
+#[func]
+pub fn Certifications() -> Html {
     let visible_items: &[CertificationData] = &[
         CertificationData {
             id: 1,
@@ -201,21 +202,36 @@ pub fn certifications() -> Html {
 
 #[function_component(Certification)]
 pub fn certification(certification: &CertificationData) -> Html {
-    let toggler = use_state(|| false);
-
-    let handle_lightbox = {
-        let _no_more_post_handle = certification.link;
-        Callback::from(move |_| {
-            toggler.set(!*toggler);
-        })
+    let image_props = ImageProps {
+        src: &*certification.image,
+        alt: "Certification Title",
+        width: "400",
+        height: "300",
+        style: "",
+        class: "image-class",
+        sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+        quality: "80",
+        priority: true,
+        placeholder: "blur",
+        on_loading_complete: Callback::from(|_| {
+            println!("Image loading is complete!");
+        }),
+        object_fit: "cover",
+        object_position: "center",
+        on_error: Callback::from(|err| {
+            println!("Error loading image: {:?}", err);
+        }),
+        decoding: "async",
+        blur_data_url: "data:image/png;base64,....",
+        lazy_boundary: "200px",
+        unoptimized: false,
+        node_ref: NodeRef::default(),
     };
-
     html! {
         <div class={GRID_ITEM_WRAPPER_CLASS}>
-            <a
-                href={certification.link}
+            <Link
+                to={certification.link}
                 class={CERTIFICATION_IMAGE_CLASS}
-                onclick={handle_lightbox}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -227,11 +243,11 @@ pub fn certification(certification: &CertificationData) -> Html {
                     </div>
                     <div class={MASK_CLASS} />
                     <div class="thumb">
-                        <img src={&*certification.image} alt="Certification-title" loading="lazy" />
+                        <Image ..image_props />
                         <div class={MASK_CLASS} />
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     }
 }

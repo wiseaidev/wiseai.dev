@@ -1,7 +1,7 @@
-use std::todo;
+use crate::pages::landing::LandingPage;
 use next_rs::prelude::*;
 use next_rs::router::*;
-use crate::pages::landing::LandingPage;
+use std::todo;
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {

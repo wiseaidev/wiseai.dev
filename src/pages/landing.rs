@@ -6,10 +6,10 @@ use crate::components::hero::ProfileCardProps;
 use crate::components::projects::Projects;
 use crate::components::skills::Skills;
 use crate::components::trending::Trending;
-use std::collections::HashMap;
 use next_rs::prelude::*;
 use next_rs::I18nProvider;
 use next_rs::{Menu, Navbar};
+use std::collections::HashMap;
 use yew_scroll::ScrollToTop;
 
 #[function_component(LandingPage)]

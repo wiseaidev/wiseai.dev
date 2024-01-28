@@ -1,4 +1,5 @@
 use next_rs::prelude::*;
+use next_rs::Link;
 
 const CONTAINER_CLASS: &str = "container mx-auto px-4";
 const FOOTER_CLASS: &str = "footer py-10";
@@ -59,15 +60,14 @@ fn socials_section() -> Html {
             <div class={SOCIALS_LIST_CLASS}>
                 { for social_links.iter().map(|link| {
                     html! {
-                        <a
-                            href={link.href}
+                        <Link
+                            to={link.href}
                             target="_blank"
                             rel="noreferrer"
                             class={CUSTOM_BG_DARK_CLASS}
-                            title={link.title}
                         >
                             <i class={link.icon_class} alt={link.title}></i>
-                        </a>
+                        </Link>
                     }
                 }) }
             </div>
@@ -75,8 +75,8 @@ fn socials_section() -> Html {
     }
 }
 
-#[function_component(Footer)]
-pub fn footer() -> Html {
+#[func]
+pub fn Footer() -> Html {
     html! {
         <section id="footer-section" class={CONTAINER_CLASS}>
             <footer id="footer" class={FOOTER_CLASS}>

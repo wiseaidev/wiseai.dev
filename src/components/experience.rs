@@ -23,8 +23,8 @@ pub struct TimelineData {
     pub content_color: &'static str,
 }
 
-#[function_component(Experience)]
-pub fn experience() -> Html {
+#[func]
+pub fn Experience() -> Html {
     let education_data = vec![
         TimelineData {
             id: 1,

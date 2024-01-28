@@ -3,7 +3,7 @@ use next_rs::router::*;
 
 use crate::router::{switch, Route};
 
-#[function_component(App)]
-pub fn app() -> Html {
+#[func]
+pub fn App() -> Html {
     html! { <BrowserRouter><Switch<Route> render={switch} /></BrowserRouter> }
 }
