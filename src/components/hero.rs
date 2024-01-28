@@ -1,4 +1,5 @@
 use next_rs::prelude::*;
+use next_rs::Link;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct ProfileCardProps {
@@ -40,8 +41,8 @@ const ICON_MEDIUM: &str = "fa-brands fa-medium";
 const ICON_DEV: &str = "fa-brands fa-dev";
 const ICON_LINKEDIN: &str = "fa-brands fa-linkedin";
 
-#[function_component(Hero)]
-pub fn hero(props: &ProfileCardProps) -> Html {
+#[func]
+pub fn Hero(props: &ProfileCardProps) -> Html {
     html! {
         <section id="hero"><div class={WRAPPER_CLASS}>{ profile_content(props) }</div></section>
     }
@@ -109,12 +110,11 @@ fn profile_social_links() -> Html {
 
 fn social_link(url: &'static str, icon: &str) -> Html {
     html! {
-        <a
+        <Link
             class={HERO_CARD_SOCIAL_ITEM_CLASS}
-            href={url}
-            title="link"
+            to={url}
             target="_blank"
             rel="noreferrer"
-        ><i class={format!("fa {} fa-2x {}", icon, HERO_CARD_SOCIAL_ITEM_IMG)} /></a>
+        ><i class={format!("fa {} fa-2x {}", icon, HERO_CARD_SOCIAL_ITEM_IMG)} /></Link>
     }
 }

@@ -1,7 +1,7 @@
 use crate::components::projects::pagetitle;
-use web_sys::HtmlInputElement;
 use next_rs::prelude::*;
-use next_rs::YewI18n;
+use next_rs::{Image, ImageProps, Link, YewI18n};
+use web_sys::HtmlInputElement;
 
 const TRENDING_CONTAINER: &str = "flex items-center justify-center min-h-screen";
 const SECTION_CONTAINER: &str = "trending-container max-w-screen-lg mx-auto p-4";
@@ -20,8 +20,8 @@ const SELECT_CLASS: &str =
     "border border-blue-500 rounded p-2 m-2 mb-14 bg-gray-800 text-white cursor-pointer w-45 h-10";
 const OPTION_CLASS: &str = "text-lg";
 
-#[function_component(Trending)]
-pub fn trending_component() -> Html {
+#[func]
+pub fn Trending() -> Html {
     let mut i18n = use_context::<YewI18n>().expect("No I18n context provided");
 
     let selected_language_ref = use_node_ref();
@@ -111,42 +111,92 @@ pub fn trending_component() -> Html {
                     { for posts.iter().map(|post| html! { <PostCard ..post.clone() /> }) }
                 </div>
                 <div class={FLEX_CENTER_CLASS}>
-                    <a
+                    <Link
                         class={BUTTON_CLASS}
-                        href="/blog"
-                        title="Go To Blog"
+                        to="/blog"
                         target="_blank"
                         rel="noreferrer"
-                    >{ "Go To Blog" }</a>
+                    >{ "Go To Blog" }</Link>
                 </div>
             </section>
         </div>
     }
 }
 
-#[function_component(PostCard)]
-pub fn post_card(post: &Post) -> Html {
+#[func]
+pub fn PostCard(post: &Post) -> Html {
+    let image_props1 = ImageProps {
+        src: &*post.thumb,
+        alt: post.author.name,
+        width: "400",
+        height: "300",
+        style: "",
+        class: IMAGE_CONTAINER,
+        sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+        quality: "80",
+        priority: true,
+        placeholder: "blur",
+        on_loading_complete: Callback::from(|_| {
+            println!("Image loading is complete!");
+        }),
+        object_fit: "cover",
+        object_position: "center",
+        on_error: Callback::from(|err| {
+            println!("Error loading image: {:?}", err);
+        }),
+        decoding: "async",
+        blur_data_url: "data:image/png;base64,....",
+        lazy_boundary: "200px",
+        unoptimized: false,
+        node_ref: NodeRef::default(),
+    };
+
+    let image_props2 = ImageProps {
+        src: &*post.author.avatar_url,
+        alt: post.author.name,
+        width: "400",
+        height: "300",
+        style: "",
+        class: AVATAR_IMAGE,
+        sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+        quality: "80",
+        priority: true,
+        placeholder: "blur",
+        on_loading_complete: Callback::from(|_| {
+            println!("Image loading is complete!");
+        }),
+        object_fit: "cover",
+        object_position: "center",
+        on_error: Callback::from(|err| {
+            println!("Error loading image: {:?}", err);
+        }),
+        decoding: "async",
+        blur_data_url: "data:image/png;base64,....",
+        lazy_boundary: "200px",
+        unoptimized: false,
+        node_ref: NodeRef::default(),
+    };
     html! {
         <div class={POST_CARD_CONTAINER}>
             <div class="flex-shrink-0">
-                <a href={post.url} class={TAG_LINK} rel="tag" target="_blank" rel="noreferrer">
-                    <img class={IMAGE_CONTAINER} src={post.thumb} alt={post.author.name} />
-                </a>
+                <Link to={post.url} class={TAG_LINK} rel="tag" target="_blank" rel="noreferrer">
+                    <Image ..image_props1 />
+                </Link>
             </div>
             <div class="p-4">
                 <div class={DATE_TEXT}>{ &post.date }</div>
                 <h2 class={TITLE_TEXT}>
-                    <a href={post.url} title={post.title} target="_blank" rel="noreferrer">
+                    <Link to={post.url} target="_blank" rel="noreferrer">
                         { post.title }
-                    </a>
+                    </Link>
                 </h2>
                 <div class="flex space-x-2">
                     { for post.tags.iter().map(|tag| html! {
-                        <a href={tag.url} class={TAG_LINK} rel="tag" target="_blank" rel="noreferrer">{ &tag.name }</a>
+                        <Link to={tag.url} class={TAG_LINK} target="_blank" rel="noreferrer">{ &tag.name }</Link>
                     }) }
                 </div>
                 <div class="flex items-center mt-3">
-                    <img class={AVATAR_IMAGE} src={post.author.avatar_url} alt={post.author.name} />
+                    <Image ..image_props2 />
                     <span class={AUTHOR_NAME}>{ &post.author.name }</span>
                 </div>
             </div>

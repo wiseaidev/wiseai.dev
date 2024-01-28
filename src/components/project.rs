@@ -1,4 +1,5 @@
 use next_rs::prelude::*;
+use next_rs::{Image, ImageProps, Link};
 
 const BG_BLACK_CLASS: &str = "bg-black shadow-dark rounded w-full xs:w-1/2";
 const PROJECT_IMAGE_CLASS: &str =
@@ -26,37 +27,45 @@ pub struct ProjectData {
     pub link: &'static str,
 }
 
-#[function_component(Project)]
-pub fn project(props: &ProjectData) -> Html {
-    let toggler = use_state(|| false);
-
-    let handle_lightbox = {
-        let link = props.link;
-        Callback::from(move |_| {
-            if link.is_empty() {
-                toggler.set(!false);
-            }
-        })
+#[func]
+pub fn Project(props: &ProjectData) -> Html {
+    let image_props = ImageProps {
+        src: &*props.image,
+        alt: "Project-title",
+        width: "400",
+        height: "300",
+        style: "",
+        class: PROJECT_IMAGE_CLASS,
+        sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+        quality: "80",
+        priority: true,
+        placeholder: "blur",
+        on_loading_complete: Callback::from(|_| {
+            println!("Image loading is complete!");
+        }),
+        object_fit: "cover",
+        object_position: "center",
+        on_error: Callback::from(|err| {
+            println!("Error loading image: {:?}", err);
+        }),
+        decoding: "async",
+        blur_data_url: "data:image/png;base64,....",
+        lazy_boundary: "200px",
+        unoptimized: false,
+        node_ref: NodeRef::default(),
     };
+
     html! {
         <div class={BG_BLACK_CLASS}>
-            <a
-                href={props.link}
+            <Link
+                to={props.link}
                 class={PROJECT_IMAGE_CLASS}
-                as="project"
-                onclick={handle_lightbox}
                 target="_blank"
                 rel="noreferrer"
             >
                 <div class={PROJECT_ITEM_CLASS}>
                     <div class="relative">
-                        <img
-                            class={PROJECT_IMAGE_CLASS}
-                            src={&*props.image}
-                            alt="Project-title"
-                            loading="lazy"
-                            style="height: 220px;"
-                        />
+                        <Image ..image_props />
                         <div class={DETAILS_CLASS}>
                             <span class={TERM_CLASS}>{ &props.category }</span>
                             <h4 class={TITLE_CLASS}>{ &props.title }</h4>
@@ -64,7 +73,7 @@ pub fn project(props: &ProjectData) -> Html {
                         </div>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     }
 }

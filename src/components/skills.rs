@@ -68,8 +68,8 @@ fn skills_data() -> Vec<SkillData> {
     ]
 }
 
-#[function_component(Skill)]
-fn skill_component(skill: &SkillData) -> Html {
+#[func]
+fn Skill(skill: &SkillData) -> Html {
     let box_class = if skill.content_color == "light" {
         "custom-box rounded bg-black text-white p-8 text-center shadow-lg border border-2 border-blue-500"
     } else {
@@ -89,8 +89,8 @@ fn skill_component(skill: &SkillData) -> Html {
     }
 }
 
-#[function_component(Skills)]
-pub fn skills_component() -> Html {
+#[func]
+pub fn Skills() -> Html {
     html! {
         <section id="skills" class={SECTION_CLASS}>
             <div class="container">
